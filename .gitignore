@@ -13,3 +13,6 @@ Gemfile.lock
 *~
 **/*~
 coverage
+
+#vim swap files
+*.*.swp
