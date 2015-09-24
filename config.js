@@ -23,10 +23,16 @@ module.exports = {
       delivery: process.env.CASEWORKER_DELIVERY_EMAIL || 'caseworker_email_address',
       rtm: process.env.CASEWORKER_RTM_EMAIL || 'caseworker_email_address'
     },
-    port: process.env.EMAIL_PORT || 587,
-    host: process.env.EMAIL_HOST || 'email-smtp.eu-west-1.amazonaws.com',
+    port: process.env.EMAIL_PORT || (process.env.NODE_ENV === 'acceptance')
+      ? 2525
+      : 587,
+    host: process.env.EMAIL_HOST || (process.env.NODE_ENV === 'acceptance')
+      ? 'localhost'
+      : 'email-smtp.eu-west-1.amazonaws.com',
     auth: {
-      user: process.env.SMTP_USER || '',
+      user: process.env.SMTP_USER || (process.env.NODE_ENV === 'acceptance')
+        ? 'acceptance'
+	: '',
       pass: process.env.SMTP_PASSWORD || ''
     },
     from: process.env.FROM_ADDRESS || 'rtm@dsp.notprod.homeoffice.gov.uk'

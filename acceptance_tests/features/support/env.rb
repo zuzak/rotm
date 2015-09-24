@@ -44,3 +44,36 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 end
+
+# Adapted from https://gist.github.com/georg/175282
+class Mailtrap
+  def self.start
+    @mailtrap_file = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'mailtrap.log'))
+    clear_mailtrap_file
+    @mailtrap = IO.popen("mailtrap run --file=#{@mailtrap_file}")
+  end
+
+  def self.clear_mailtrap_file
+    FileUtils.rm_f @mailtrap_file
+  end
+
+  def self.stop
+    Process.kill('HUP', @mailtrap.pid)
+  end
+
+  def self.content
+    File.read(@mailtrap_file)
+  end
+end
+
+Mailtrap.start
+
+at_exit do
+  Mailtrap.stop
+end
+
+After do |scenario|
+  unless scenario.failed?
+    Mailtrap.clear_mailtrap_file
+  end
+end
