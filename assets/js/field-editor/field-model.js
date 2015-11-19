@@ -4,7 +4,7 @@
 /*eslint no-unused-vars: 0 */
 /*eslint func-names: 0 */
 
-var eventFactory = require('./event-factory');
+var eventFactory = require('../event-factory');
 var Ajax = require('../ajax');
 
 var FieldModel = function(fieldProperties) {

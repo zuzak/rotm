@@ -19,6 +19,7 @@ var Ajax = function Ajax(options) {
 
     if (options.method === 'POST') {
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('X-Requested-By', 'blha');
     }
 
     xhr.responseType = options.responseType;

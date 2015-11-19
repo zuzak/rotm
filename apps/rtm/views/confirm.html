@@ -26,8 +26,9 @@
           </legend>
           <div class="confirmation">
             {{#values.report}}
-	          <h2>{{#t}}pages.rtm-confirmation.check-details{{/t}}</h2>
-            <span class="remove-url-anchor"><a href="{{baseUrl}}/removeurl/{{options.id}}">{{#t}}pages.rtm-confirmation.remove-url{{/t}}</a></span>
+            <div class="report-data">
+	            <h2>{{#t}}pages.rtm-confirmation.check-details{{/t}}</h2>
+              <span class="remove-url-anchor"><a href="{{baseUrl}}/removeurl/{{options.id}}">{{#t}}pages.rtm-confirmation.remove-url{{/t}}</a></span>
               <div class="editable-field">
                 <h3>{{#t}}fields.url.short{{/t}}</h3>
                 <div class="data-wrap">
@@ -67,6 +68,7 @@
                   {{#t}}buttons.cancel{{/t}}
 		            </a>
               </div>
+            </div>
               {{/values.report}}
               <div>
 	              <a href="{{baseUrl}}">{{#t}}pages.rtm-confirmation.add-another{{/t}}</a>

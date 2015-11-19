@@ -3,37 +3,40 @@
 /*eslint no-undef: 0 */
 /*eslint no-unused-vars: 0 */
 /*eslint func-names: 0 */
-var eventFactory = require('./event-factory');
+var eventFactory = require('../event-factory');
 var FieldModel = require('./field-model');
-var FieldElement = require('./field-element');
+var Element = require('../element');
 
 var EditableField = function(ele) {
   /* view */
 
-  var el = ele;
+  var csrfToken;
+  var fieldEl;
+  var fieldType;
+  var formField;
+
   var mode = 'view';
+
+  var el = new Element(ele);
   var fieldWrapper = el.querySelector('.data-wrap');
   var fieldPara = el.querySelector('.data-wrap p');
   var editBtn = el.querySelector('.edit-btn');
   var cancelBtn = el.querySelector('.cancel-btn');
   var submitBtn = el.querySelector('input.button');
 
-  var fieldEl;
-  var fieldType;
-  var formField;
   var fieldProperties = fieldPara.dataset;
-  var formModel = new FieldModel(fieldProperties);
-
+  
   if (fieldProperties.element) {
     // valid data properties on the element, so proceed
     fieldEl = fieldProperties.element.split(':')[0];
     fieldType = fieldProperties.element.split(':')[1] || null;
 
-    formField = new FieldElement(fieldEl);
+    var formModel = new FieldModel(fieldProperties);
+    formField = new Element(fieldEl);
     formModel.SetValue(fieldPara.textContent);
   }
 
-  this.setMode = function(newmode) {
+  var setMode = function(newmode) {
     el.className = el.className.replace(/\sedit|\sview/g, '') + ' ' + newmode;
     if (newmode === 'edit') {
       fieldWrapper.removeChild(fieldPara);
@@ -48,18 +51,18 @@ var EditableField = function(ele) {
     mode = newmode;
   };
 
-  this.toggleMode = function(e) {
+  var toggleMode = function(e) {
     if (e && e.preventDefault) {
       e.preventDefault();
     }
 
     var toggledMode = (mode === 'view') ? 'edit' : 'view';
-    this.setMode(toggledMode);
+    setMode(toggledMode);
 
     el.dispatchEvent(eventFactory('toggled', {'mode': mode}));
   };
 
-  this.submit = function(e) {
+  var submit = function(e) {
     if (e && e.preventDefault) {
       e.preventDefault();
     }
@@ -67,23 +70,37 @@ var EditableField = function(ele) {
     el.dispatchEvent(eventFactory('submit', {'field': formField}));
   };
 
-  this.success = function(e) {
+  var success = function(e) {
     fieldPara.textContent = formModel.GetValue();
-    this.setMode('view');
+    setMode('view');
   };
 
-  this.failure = function(e) {
-    this.setMode('view');
+  var failure = function(e) {
+    setMode('view');
   };
 
-  this.init = function(csrfToken) {
-    editBtn.addEventListener('click', this.toggleMode.bind(this));
-    cancelBtn.addEventListener('click', this.toggleMode.bind(this));
-    submitBtn.addEventListener('click', this.submit.bind(this));
+  this.Init = function(token){
+    csrfToken = token;
+    if (!csrfToken) {
+      return;
+    }
+    if (formField){
+      this.InitListeners();
+    }
+  };
+  
+  this.InitListeners = function() {
+    try {
+      editBtn.addEventListener('click', toggleMode.bind(this));
+      cancelBtn.addEventListener('click', toggleMode.bind(this));
+      submitBtn.addEventListener('click', submit.bind(this));
 
-    el.addEventListener('submit', formModel.handleSubmit.bind(formModel, csrfToken));
-    formField.addEventListener('success', this.success.bind(this));
-    formField.addEventListener('failure', this.failure.bind(this));
+      el.addEventListener('submit', formModel.handleSubmit.bind(formModel, csrfToken));
+      formField.addEventListener('success', success.bind(this));
+      formField.addEventListener('failure', failure.bind(this));
+    } catch (e) {
+      throw new Error("Unexpected template");
+    }
   };
 
   this.Element = function() {
@@ -91,7 +108,7 @@ var EditableField = function(ele) {
   };
 
   this.CancelEdit = function() {
-    this.setMode('view');
+    setMode('view');
   };
 
 };

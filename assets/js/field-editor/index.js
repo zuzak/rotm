@@ -1,6 +1,6 @@
 'use strict';
 
-var eventFactory = require('./event-factory');
+var eventFactory = require('../event-factory');
 var EditableField = require('./editable-field');
 
 /*eslint no-undef: 0 */
@@ -30,14 +30,15 @@ var FieldEditor = function(token) {
     cancelEdits(exclude);
   };
 
-  this.init = function(els) {
+  
+  this.Init = function(els) {
 
     if (csrfToken) {
 
       editableFields = [].map.call(els, function createEditableField(el) {
         el.addEventListener('toggled', handleToggle);
         var ef = new EditableField(el);
-        ef.init(csrfToken);
+        ef.Init(csrfToken);
         return ef;
       });
 
