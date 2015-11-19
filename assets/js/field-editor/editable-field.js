@@ -25,7 +25,7 @@ var EditableField = function(ele) {
   var submitBtn = el.querySelector('input.button');
 
   var fieldProperties = fieldPara.dataset;
-  
+
   if (fieldProperties.element) {
     // valid data properties on the element, so proceed
     fieldEl = fieldProperties.element.split(':')[0];
@@ -79,16 +79,16 @@ var EditableField = function(ele) {
     setMode('view');
   };
 
-  this.Init = function(token){
+  this.Init = function(token) {
     csrfToken = token;
     if (!csrfToken) {
       return;
     }
-    if (formField){
+    if (formField) {
       this.InitListeners();
     }
   };
-  
+
   this.InitListeners = function() {
     try {
       editBtn.addEventListener('click', toggleMode.bind(this));
@@ -99,7 +99,7 @@ var EditableField = function(ele) {
       formField.addEventListener('success', success.bind(this));
       formField.addEventListener('failure', failure.bind(this));
     } catch (e) {
-      throw new Error("Unexpected template");
+      throw new Error('Unexpected template');
     }
   };
 

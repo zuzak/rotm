@@ -30,7 +30,7 @@ var FieldEditor = function(token) {
     cancelEdits(exclude);
   };
 
-  
+
   this.Init = function(els) {
 
     if (csrfToken) {

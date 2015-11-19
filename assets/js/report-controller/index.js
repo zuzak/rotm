@@ -11,21 +11,21 @@ var csrfToken;
 
 var ReportController = function(token) {
   csrfToken = token;
-}
+};
 
-ReportController.prototype.Init = function(el){
+ReportController.prototype.Init = function(el) {
   this.el = new Element(el);
   var fields = this.el.querySelectorAll('.editable-field');
   var fieldEditors;
 
   if (fields.length) {
-    fieldEditors = [].map.call(fields, function(field){
+    fieldEditors = [].map.call(fields, function(field) {
       var fieldEditor = new FieldEditor(csrfToken);
       fieldEditor.Init(field);
       return fieldEditor;
     });
   }
-                              
+
 };
 
 module.exports = ReportController;

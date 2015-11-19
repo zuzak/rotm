@@ -6,8 +6,8 @@
 
 var elements = {};
 
-var el = {
-    addEventListener: sinon.stub().returns(function(evnt, handler){
+var ele = {
+    addEventListener: sinon.stub().returns(function(evnt, handler) {
         sinon.spy.apply(this, arguments);
         console.log(e, h);
     }),
@@ -15,24 +15,24 @@ var el = {
     appendChild: function() {},
     removeChild: function() {},
     dispatchEvent: sinon.spy()
-}
+};
 
-var Element = function(dataset){
-    if (dataset){
+var Element = function(dataset) {
+    if (dataset) {
         this.dataset = dataset;
     }
 };
 
-Element.prototype = el;
+Element.prototype = ele;
 
-Element.prototype.querySelector = function(selector){
+Element.prototype.querySelector = function(selector) {
     var el = new Element();
     elements[selector] = el;
     return el;
 };
 
-Element.prototype.createElement = function(){
+Element.prototype.createElement = function() {
     return new Element();
 };
-    
+
 module.exports = Element;
