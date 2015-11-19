@@ -26,13 +26,13 @@
           </legend>
           <div class="confirmation">
             {{#values.report}}
-            <div class="report-data">
+            <div class="report-data" data-options="{{data-options}}">
 	            <h2>{{#t}}pages.rtm-confirmation.check-details{{/t}}</h2>
               <span class="remove-url-anchor"><a href="{{baseUrl}}/removeurl/{{options.id}}">{{#t}}pages.rtm-confirmation.remove-url{{/t}}</a></span>
               <div class="editable-field">
                 <h3>{{#t}}fields.url.short{{/t}}</h3>
                 <div class="data-wrap">
-		              <p data-name="url" data-element="input:text" data-options="{{data-options}}" data-defaults="{{data-defaults}}">{{url}}</p>
+		              <p data-name="url" data-element="input:text" data-defaults="{{data-defaults}}">{{url}}</p>
 		            </div>
                 {{#input-submit}}update{{/input-submit}}
 		            <a href="{{baseUrl}}/editurl/{{options.id}}" class="btn edit-btn">
@@ -45,7 +45,7 @@
               <div class="editable-field">
 		            <h3>{{#t}}fields.location.short{{/t}}</h3>
 		            <div class="data-wrap">
-                  <p data-name="location" data-element="textarea" data-options="{{data-options}}" data-defaults="{{data-defaults}}">{{location}}</p>
+                  <p data-name="location" data-element="textarea" data-defaults="{{data-defaults}}">{{location}}</p>
 		            </div>
                 {{#input-submit}}update{{/input-submit}}
 		            <a href="{{baseUrl}}/editurl/{{options.id}}" class="btn edit-btn">
@@ -58,7 +58,7 @@
               <div class="editable-field">
 		            <h3>{{#t}}fields.description.short{{/t}}</h3>
 		            <div class="data-wrap">
-                  <p data-name="description" data-element="textarea" data-options="{{data-options}}" data-defaults="{{data-defaults}}">{{description}}</p>
+                  <p data-name="description" data-element="textarea" data-defaults="{{data-defaults}}">{{description}}</p>
 		            </div>
                 {{#input-submit}}update{{/input-submit}}
 		            <a href="{{baseUrl}}/editurl/{{options.id}}" class="btn edit-btn">
