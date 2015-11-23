@@ -28,7 +28,13 @@
             {{#values.report}}
             <div class="report-data" data-options="{{data-options}}">
 	            <h2>{{#t}}pages.rtm-confirmation.check-details{{/t}}</h2>
-              <span class="remove-url-anchor"><a href="{{baseUrl}}/removeurl/{{options.id}}">{{#t}}pages.rtm-confirmation.remove-url{{/t}}</a></span>
+              <div class="remove-url-anchor" class="view">
+                <a class="delete-trigger" href="{{baseUrl}}/removeurl/{{options.id}}">{{#t}}pages.rtm-confirmation.remove-url{{/t}}</a>
+                {{#input-submit}}confirm{{/input-submit}}                
+		            <a href="" class="btn cancel-btn">
+                  {{#t}}buttons.cancel{{/t}}
+		            </a>
+              </div>
               <div class="editable-field">
                 <h3>{{#t}}fields.url.short{{/t}}</h3>
                 <div class="data-wrap">
