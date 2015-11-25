@@ -5,7 +5,7 @@ var _ = require('underscore');
 
 var Controller = require('../../../lib/base-controller');
 var Model = require('../../common/models/email');
-
+var fields = require('../fields');
 var Submit = function Submit() {
   Controller.apply(this, arguments);
 };
@@ -20,20 +20,31 @@ function getReports(req) {
 
 Submit.prototype.getValues = function getValues(req) {
   var data = getReports(req);
+ 
   _.each(data, function addIndex(d, i) {
+
+    var properties = {};
+    for (var key in d){
+      properties[key] = fields[key];
+    }
+    d['data-properties'] = JSON.stringify(properties);
 
     var options = {
       'id': i,
-      'uri': 'editurl'
+      'edit': JSON.stringify({
+        'uri': req.baseUrl + '/editurl/' + i
+      }),
+      'delete': JSON.stringify({
+        'uri': req.baseUrl + '/editurl/' + i
+      })
     };
-    var defaults = {};
 
     d.options = options;
-
     d['data-options'] = JSON.stringify(options);
-    d['data-defaults'] = JSON.stringify(defaults);
+
     d['report-number'] = i + 1;
   });
+
   Controller.prototype.getValues.apply(this, arguments);
 };
 

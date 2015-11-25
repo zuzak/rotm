@@ -12,4 +12,5 @@ doc
 Gemfile.lock
 apps/**/translations/en
 *~
+\#*
 coverage

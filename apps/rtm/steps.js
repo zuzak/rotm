@@ -6,6 +6,7 @@ module.exports = {
     controller: require('./controllers/add-report'),
     fields: [
       'url',
+      'demo-select',
       'location',
       'description'
     ],
