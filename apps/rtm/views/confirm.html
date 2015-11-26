@@ -70,108 +70,69 @@
                </div>
 
                <hr>
-               
+
                <div class="editable-field" data-name="url" data-element="input:text" data-label="{{#t}}fields.url.label{{/t}}" data-defaults="{{data-defaults}}" data-value="{{url}}" data-options="{{options.edit}}">
-                 <h3>{{#t}}fields.url.short{{/t}}</h3>
-                 
-                 <div class="view">
 
-                   <div class="data-wrap">
-		                 <p class="data-preview">
-                       {{#url}}
-                       {{url}}
-                       {{/url}}
-                       {{^url}}
-                       &lt;none entered&gt;
-                       {{/url}}
-                     </p>
-		               </div>
+                 <div>
 
- 		             <a href="{{baseUrl}}/editurl/{{options.id}}" class="btn trigger edit-btn">
-                   {{#t}}buttons.change{{/t}}<span class="visuallyhidden"> {{#t}}fields.url.short{{/t}}</span>
-		             </a>
-
-                 </div>
-
-                 <div class="controls">
-
-                   {{#input-text}}url{{/input-text}}
-
-                   <input type="submit" value="{{#t}}buttons.update{{/t}}" class="button confirm" />
-                   <br />                   
-		               <a href="#" class="btn cancel cancel-btn">
-		                 {{#t}}buttons.cancel{{/t}}
-		               </a>
-
-                 </div>
-
-               </div>
-
-               <hr>
-               
-               <div class="editable-field" data-name="location" data-element="textarea" data-label="{{fields.location.label}}" data-defaults="{{data-defaults}}" data-value="{{location}}" data-options="{{options.edit}}">
-		             <h3>{{#t}}fields.location.short{{/t}}</h3>
-
-                 <div class="view">
+                   <h3>{{#t}}fields.url.short{{/t}}</h3>
                    
-		             <div class="data-wrap">
-                   
-                   <div class="data-preview">
-                     {{#location}}
-                     {{location}}
-                     {{/location}}
-                     {{^location}}
-                       &lt;none entered&gt;
-                     {{/location}}
+                   <div class="view">
+
+                     <div class="data-wrap">
+		                   <p class="data-preview trigger" contenteditable="true" data-placeholder="No url specified">
+                         {{#url}}
+                         {{url}}
+                         {{/url}}
+                       </p>
+		                 </div>
+
                    </div>
-		             </div>
-                 
-		             <a href="{{baseUrl}}/editurl/{{options.id}}" class="btn trigger edit-btn">
-		               {{#t}}buttons.change{{/t}}<span class="visuallyhidden"> {{#t}}fields.location.short{{/t}}</span>
-		             </a>
 
                  </div>
+
+                 <hr>
                  
-                 <div class="controls">
+                 <div>
                    
-                   {{#textarea}}location{{/textarea}}
+		               <h3>{{#t}}fields.location.short{{/t}}</h3>
 
-                   <input type="submit" value="{{#t}}buttons.update{{/t}}" class="button confirm" />
-                   <br />                   
-		               <a href="#" class="btn cancel cancel-btn">
-		                 {{#t}}buttons.cancel{{/t}}
-		               </a>
-
+                   <div class="view">
+                     
+		                 <div class="data-wrap">
+                       
+                       <div class="data-preview trigger" contenteditable="true" data-placeholder="No location specified">
+                         {{#location}}
+                         {{location}}
+                         {{/location}}
+                       </div>
+		                 </div>
+                     
+                   </div>
+                   
                  </div>
 
-               </div>
-
-                <hr>
-                             
-               <div class="editable-field" data-name="description" data-element="textarea" data-label="{{fields.description.label}}" data-defaults="{{data-defaults}}" data-value="{{description}}" data-options="{{data-options.edit}}">
-		             <h3>{{#t}}fields.description.short{{/t}}</h3>
+                 <hr>
                  
-                 <div class="view">
+                 <div>
+                   
+		               <h3>{{#t}}fields.description.short{{/t}}</h3>
+                   
+                   <div class="view">
 
-		               <div class="data-wrap">
-                     <div class="data-preview">
-                       {{#description}}
-                       {{description}}
-                       {{/description}}
-                       {{^description}}
-                       &lt;none entered&gt;
-                       {{/description}}
-                     </div>
-		             </div>
-		             <a href="{{baseUrl}}/editurl/{{options.id}}" class="btn trigger edit-btn">
-		               {{#t}}buttons.change{{/t}}<span class="visuallyhidden"> {{#t}}fields.description.short{{/t}}</span>
-		             </a>
+		                 <div class="data-wrap">
+                       <div class="data-preview trigger" contenteditable="true" data-placeholder="No description specified">
+                         {{#description}}
+                         {{description}}
+                         {{/description}}
+                       </div>
+		                 </div>
+
+                   </div>
 
                  </div>
 
                  <div class="controls">
-
-                   {{#textarea}}description{{/textarea}}
 
                    <input type="submit" value="{{#t}}buttons.update{{/t}}" class="button confirm" />
                    <br />
@@ -180,17 +141,17 @@
 		               </a>
 
                  </div>
-                 
-               </div>
 
-             </fieldset>
+               </div>
              
+             </fieldset>
+
            </div>
            
            {{/values.report}}
 
            <hr>
-               
+           
 
            <div>
              

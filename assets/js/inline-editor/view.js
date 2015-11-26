@@ -35,7 +35,9 @@ View.prototype.SetValue = function(value){
 View.prototype.SetupFormField = function(){
   var props = this.Properties();
   this.formElement = this.el.querySelector('*[name="'+props.name+'"]');
-  this.formElement.value = props.value;
+  if (this.formElement){
+    this.formElement.value = props.value;
+  }
 };
 
 View.prototype.Properties = function(){
@@ -79,17 +81,21 @@ View.prototype.Confirm = function(e){
 };
 
 View.prototype.bindEvents = function(eventName, selector, method){
-  var el = this.el.querySelector(selector);
+  var el = this.el.querySelectorAll(selector);
   if (el) {
-    el.addEventListener(eventName, method);
+    [].forEach.call(el, function(e){
+      e.addEventListener(eventName, method);
+    });
   }
   return el; 
 };
 
 View.prototype.unbindEvents = function(eventName, selector, method){
-  var el = this.el.querySelector(selector);
+  var el = this.el.querySelectorAll(selector);
   if (el) {
-    el.removeEventListener(eventName, method);
+    [].forEach.call(el, function(e){
+      e.removeEventListener(eventName, method);
+    });
   }
   return el; 
 };
