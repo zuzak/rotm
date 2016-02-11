@@ -1,6 +1,18 @@
 
 nginx:
-    build: "./docker/nginx/"
+    image: quay.io/ukhomeofficedigital/nginx-proxy:v1.1.4
+    environment:
+        - LOAD_BALANCER_CIDR=10.50.0.0/16
+        - PROXY_SERVICE_HOST=127.0.0.1
+        - PROXY_SERVICE_PORT="8080"
+        - ENABLE_UUID_PARAM="FALSE"
+        - NAXSI_USE_DEFAULT_RULES="FALSE"
+        - PORT_IN_HOST_HEADER="FALSE"
+        - ERROR_REDIRECT_CODES="599"
+  
+    env_file:
+        - ./docker-compose-nginx.env
+            
     volumes:
         - "./public:/public:z"
     links:
