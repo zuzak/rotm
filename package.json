@@ -31,17 +31,20 @@
     "create:public": "mkdir -p ./public/js ./public/css ./public/images",
     "hof-transpile": "hof-transpiler ./apps/**/translations/src --shared ./node_modules/hof-template-partials/translations/src",
     "prepareapp": "npm run create:public; npm run sass; npm run browserify; npm run copy:images; npm run hof-transpile",
-    "postinstall": "bash -c 'if [[ ${NODE_ENV} != production ]]; then npm run prepareapp; fi;'"
+    "postinstall": "bash -c 'if [[ ${NODE_ENV} != production ]]; then npm run prepareapp; fi;'",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "HomeOffice",
   "dependencies": {
     "browserify": "^12.0.1",
     "hof-bootstrap": "^9.3.1",
     "hof-controllers": "6.0.3",
-    "hof-frontend-toolkit": "^1.0.0",
+    "hof-frontend-toolkit": "^2.1.1",
     "hof-transpiler": "^0.1.0",
     "node-sass": "^3.10.0",
-    "winston": "^2.3.0"
+    "winston": "^2.3.0",
+    "snyk": "^1.156.0"
   },
   "devDependencies": {
     "bluebird": "^3.3.4",
@@ -67,5 +70,6 @@
     "lint",
     "style",
     "test"
-  ]
+  ],
+  "snyk": true
 }
